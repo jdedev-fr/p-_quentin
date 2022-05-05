@@ -1,9 +1,7 @@
 
 
-class Image
-{
-    constructor	(data,sliceName,dataphotographer)
-    {
+class Image {
+    constructor(data, sliceName, dataphotographer) {
         this._type = 'photo'
         this._id = data.id
         this._photographerId = data.photographerId
@@ -13,61 +11,52 @@ class Image
         this._date = data.date
         this._price = data.price
         this._slice = sliceName
-        this._photographerName = dataphotographer.name   
+        this._photographerName = dataphotographer.name
     }
-    get photographerName()
-    {
+    get photographerName() {
         return this._photographerName
     }
 
-    get type()
-    {
+    get type() {
         return this._type
     }
 
-    get image()
-    {
-        return  `SamplePhotos/${this._slice}/${this._image}`    
+    get image() {
+        return `SamplePhotos/${this._slice}/${this._image}`
     }
 
-    get id()
-    {
+    get id() {
         return this._id
     }
 
-    get photographerId()
-    {
+    get photographerId() {
         return this._photographerId
     }
 
-    get title()
-    {
+    get title() {
         return this._title
     }
 
-    get likes(){
+    get likes() {
         return this._likes
     }
 
-    get date(){
+    get date() {
         return this._date
     }
 
-    get price ()
-    {
+    get price() {
         return this._price
     }
-    get nameslice()
-    {
+    get nameslice() {
         return this._slice
     }
 
-    render() 
-    {
+    render() {
         console.log(this._photographerId)
         const article = document.createElement('article');
-        article.innerHTML= `
-        <img class="openModal" src= "${this.image}" onclick=launchModalPhoto(${this._photographerId},${this._id})>
+        article.innerHTML = `
+        <img class="openModal" src= "${this.image}" onclick=app.modalMedia.launchModalPhoto(${this._id})>
         <footer>
             <h2>${this._title}</h2>
             <div class="footer_heart_icon"> 
@@ -77,6 +66,11 @@ class Image
             </button>
             </div>
         </footer>`
+        return article
+    }
+    renderModal() {
+        const article = document.createElement('img');
+        article.src = `${this.image}`
         return article
     }
 }
